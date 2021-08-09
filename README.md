@@ -12,6 +12,8 @@ Here i've used some sort of **Strategy** design pattern (or at least i hope so).
 
 We have a base AbstractCamera class that defines: every class derived from it will be a scriptable object and will contain a method to follow player ship. AbstractCamera does not have any fields or properties because every type of camera needs (or does not need) a set of it's own settings. All camera types are derived from this abstract class.
 
+Then there is a MonoBehaviour called CameraController that can contain those cameras and iterate between them in game based on input.
+
 Why scriptable objects over pure C# classes? They can store data and methods just like C# classes and, on top of that, scriptable objects can be simply dragged into array or collection in the inspector. It allows our CameraController easily iterate between cameras and makes camera implementations independent from one-another. Because of that, creating a new camera type becomes a pure joy code-wise. 
 
 If we had everything in one monolithic MonoBehaviour, every time we'd want to change something or add a new camera, chances are we'd create some bugs caused by lots of connections in code.
