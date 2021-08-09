@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GenericSpaceSim.Core
+namespace GenericSpaceSim.Ship
 {
     /// <summary>
     /// Creates a set of core systems instances to control the ship.

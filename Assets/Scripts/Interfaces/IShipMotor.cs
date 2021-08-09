@@ -1,4 +1,4 @@
-namespace GenericSpaceSim.Core
+namespace GenericSpaceSim.Ship
 {
     public interface IShipMotor
     {

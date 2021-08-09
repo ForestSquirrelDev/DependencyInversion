@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GenericSpaceSim.Core
+namespace GenericSpaceSim.Ship
 {
     public class ShipInput : IPlayerInput
     {

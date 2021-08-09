@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using GenericSpaceSim.Core;
+using GenericSpaceSim.Ship;
 
 namespace GenericSpaceSim.UI
 {

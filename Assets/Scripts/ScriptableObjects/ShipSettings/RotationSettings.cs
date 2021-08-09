@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GenericSpaceSim
+namespace GenericSpaceSim.Ship
 {
     [CreateAssetMenu(menuName = "Rotation settings", fileName = "ShipRotationData")]
     public class RotationSettings : ScriptableObject

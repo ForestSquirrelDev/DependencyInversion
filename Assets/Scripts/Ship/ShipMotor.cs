@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GenericSpaceSim.Core
+namespace GenericSpaceSim.Ship
 {
     /// <summary>
     /// Responsible for movement and rotation of player ship.

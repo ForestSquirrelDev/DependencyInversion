@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace GenericSpaceSim.Core
+namespace GenericSpaceSim.Ship
 {
     [RequireComponent(typeof(Rigidbody))]
     public class ShipCollisions : MonoBehaviour

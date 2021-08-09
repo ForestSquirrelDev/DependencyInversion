@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GenericSpaceSim
+namespace GenericSpaceSim.Ship
 {
     [CreateAssetMenu(menuName = "Movement settings", fileName = "ShipMovementData")]
     public class MovementSettings : ScriptableObject
