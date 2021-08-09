@@ -5,7 +5,7 @@ namespace GenericSpaceSim.CameraManagement
     /// <summary>
     /// Smoothly follows player from behind.
     /// </summary>
-    [CreateAssetMenu(menuName = "Back camera")]
+    [CreateAssetMenu(menuName = "Camera/Back camera")]
     public class BackCam : AbstractCamera
     {
         [Range(0.01f, 0.5f)]

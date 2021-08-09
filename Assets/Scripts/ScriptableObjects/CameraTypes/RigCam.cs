@@ -5,7 +5,7 @@ namespace GenericSpaceSim.CameraManagement
     /// <summary>
     /// Simply places itself at rig position.
     /// </summary>
-    [CreateAssetMenu(menuName = "Rig camera")]
+    [CreateAssetMenu(menuName = "Camera/Rig camera")]
     public class RigCam : AbstractCamera
     {
         public override void FollowPlayer(Transform thisTransform, Transform target, Transform rig = null)

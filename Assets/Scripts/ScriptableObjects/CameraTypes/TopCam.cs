@@ -5,7 +5,7 @@ namespace GenericSpaceSim.CameraManagement
     /// <summary>
     /// Flies on top of the player ship.
     /// </summary>
-    [CreateAssetMenu(menuName = "Top camera")]
+    [CreateAssetMenu(menuName = "Camera/Top camera")]
     public class TopCam : AbstractCamera
     {
         [Range(1.0f, 100.0f)]
