@@ -9,20 +9,20 @@ namespace GenericSpaceSim.UI
     /// </summary>
     public class Speedometer : MonoBehaviour
     {
-        [SerializeField] Text speedText;
-        [SerializeField] Ship ship;
+        [SerializeField] private Text speedText;
+        [SerializeField] private ShipController ship;
 
         private void Awake()
         {
             if (ship == null)
             {
                 Debug.LogWarning($"Field '{nameof(ship)}' is not set in the inspector. FindObjectOfType will be used instead.");
-                ship = FindObjectOfType<Ship>();
+                ship = FindObjectOfType<ShipController>();
             }
             if (speedText == null)
             {
-                Debug.LogWarning($"Field '{nameof(speedText)}' is not set in the inspector. {gameObject.name} will be disabled.");
-                gameObject.SetActive(false);
+                Debug.LogWarning($"Field '{nameof(speedText)}' is not set in the inspector. Using GetComponent<T>() instead.");
+                transform.parent.GetComponentInChildren<Text>();
             }
         }
 

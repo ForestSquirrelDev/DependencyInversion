@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace GenericSpaceSim.Core
 {
+    /// <summary>
+    /// Responsible for movement and rotation of player ship.
+    /// </summary>
     public class ShipMotor : IShipMotor
     {
         private readonly ShipInput shipInput;

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-/// <summary>
-/// Makes camera seem following a little behind and above the ship to make player's flight more entertaining and responsive.
-/// Based on the camera script from https://www.youtube.com/watch?v=f1jGPdT4Er. Great thanks to Bit Galaxis for showing and overwiew of it.
-/// </summary>
 namespace GenericSpaceSim.CameraManagement
 {
-    public class BackCamera : MonoBehaviour
+    /// <summary>
+    /// Smoothly follows player from behind.
+    /// </summary>
+    [CreateAssetMenu(menuName = "Back camera")]
+    public class BackCam : AbstractCamera
     {
-        [Tooltip("Target to follow.")]
-        [SerializeField] private Transform target;
-
         [Range(0.01f, 0.5f)]
         [Tooltip("How high above the ship should camera be placed.")]
         [SerializeField] private float cameraHeight = 0.25f;
@@ -30,33 +27,9 @@ namespace GenericSpaceSim.CameraManagement
         private Vector3 cameraPos;
         private Vector3 velocity;
 
-        private Transform thisTransform;
-
         private float angle;
 
-        private void Awake()
-        {
-            if (target == null)
-            {
-                Debug.LogWarning($"Field '{nameof(target)}' is not set in the inspector for {gameObject.name}. Script will be disabled");
-                GetComponent<BackCamera>().enabled = false;
-            }
-        }
-
-        private void Start() => thisTransform = gameObject.transform;
-
-        void LateUpdate()
-        {
-            FollowPlayer();
-        }
-
-        /// <summary>
-        /// This is the best part.
-        /// Calculating the angle allows our camera to change its velocity depending on the difference between Quaternions.
-        /// Basically this works like a custom Lerp - camera speeds up trying to catch up to the ship and slows down in the end, 
-        /// which effectively prevents jittery rotation patterns and makes camera ultra smooth (built-in Lerp and Slerp wouldn't work properly).
-        /// </summary>
-        private void FollowPlayer()
+        public override void FollowPlayer(Transform thisTransform, Transform target, Transform rig = null)
         {
             // Calculate position.
             cameraPos = target.position - (target.forward * distance) + target.up * distance * cameraHeight;
@@ -72,4 +45,3 @@ namespace GenericSpaceSim.CameraManagement
         }
     }
 }
-

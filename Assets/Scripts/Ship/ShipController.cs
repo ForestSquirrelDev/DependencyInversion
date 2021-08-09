@@ -2,15 +2,18 @@ using UnityEngine;
 
 namespace GenericSpaceSim.Core
 {
-    public class Ship : MonoBehaviour
+    /// <summary>
+    /// Creates a set of core systems instances to control the ship.
+    /// </summary>
+    public class ShipController : MonoBehaviour
     {
         [SerializeField] private MovementSettings movementSettings;
         [SerializeField] private RotationSettings rotationSettings;
 
         [SerializeField] private Transform targetShip;
 
-        private ShipInput shipInput;
         private IShipMotor shipMotor;
+        private ShipInput shipInput;
         private ShipCollisions shipCollisions;
 
         private float currentSpeed;

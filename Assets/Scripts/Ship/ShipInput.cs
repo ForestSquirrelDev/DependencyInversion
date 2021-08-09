@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GenericSpaceSim.Core
 {
-    public class ShipInput
+    public class ShipInput : IPlayerInput
     {
         private Vector3 mousePos;
 
@@ -16,11 +16,6 @@ namespace GenericSpaceSim.Core
         public bool QIsPressed { get; private set; }
         public bool EIsPressed { get; private set; }
 
-        /// <summary>
-        /// Imitate virtual joystick to rotate ship by mouse position on the screen.
-        /// Huge thanks to brihernandez for source code of this method:
-        /// https://github.com/brihernandez/ArcadeSpaceFlightExample/blob/master/Assets/ArcadeSpaceFlight/Code/Ship/ShipInput.cs
-        /// </summary>
         public void HandleControllerInput()
         {
             mousePos = Input.mousePosition;
