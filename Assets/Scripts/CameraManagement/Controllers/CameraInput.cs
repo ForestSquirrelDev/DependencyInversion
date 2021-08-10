@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GenericSpaceSim.CameraManagement
 {
-    public class CameraInput : IPlayerInput
+    public class CameraInput
     {
         public bool CIsPressed { get; private set; }
 

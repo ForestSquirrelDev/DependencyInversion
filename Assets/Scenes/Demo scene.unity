@@ -276,17 +276,6 @@ RectTransform:
   m_AnchoredPosition: {x: 250, y: 150}
   m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &492107086 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
-  m_PrefabInstance: {fileID: 2158731441230107238}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7df77ff524fcf4548bee49ad4565b829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &596903398
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,11 +928,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedText: {fileID: 15016287}
-  ship: {fileID: 492107086}
   floatRef:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 2a59eaa677557334793f94ec19ab8b4b, type: 2}
+    Variable: {fileID: 11400000, guid: 4b4bc64c0b521124282630506c9b9170, type: 2}
 --- !u!4 &4074536520633598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2160358972548390552, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
@@ -957,16 +943,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: shipMotor
+      value: 
+      objectReference: {fileID: 11400000, guid: 05d3aa86a9a285644919d0d0604fc9b2, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: shipSpeed
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b4bc64c0b521124282630506c9b9170, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: currentSpeed
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b4bc64c0b521124282630506c9b9170, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: floatVariable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b4bc64c0b521124282630506c9b9170, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
       propertyPath: movementSettings
       value: 
       objectReference: {fileID: 11400000, guid: 3dd6162ad2bd54341baddc9ce8e23409, type: 2}
     - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
       propertyPath: floatRef.Variable
       value: 
-      objectReference: {fileID: 11400000, guid: 2a59eaa677557334793f94ec19ab8b4b, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
       propertyPath: floatRef.UseConstant
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: floatRef.constantValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2157450666871092056, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
       propertyPath: m_Name

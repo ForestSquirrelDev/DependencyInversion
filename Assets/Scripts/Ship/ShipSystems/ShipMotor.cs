@@ -1,4 +1,5 @@
 using UnityEngine;
+using GenericSpaceSim.Variables;
 
 namespace GenericSpaceSim.Ship
 {
@@ -11,19 +12,19 @@ namespace GenericSpaceSim.Ship
         private readonly ShipCollisions shipCollisions;
         private readonly Transform targetTransform;
         private readonly MovementSettings movementSettings;
+        private readonly FloatVariable currentSpeed;
 
         private Vector3 targetPos;
         private Vector3 smoothPos;
 
-        public float CurrentSpeed { get; private set; } = 0f;
-
         public ShipMotor(
-            MovementSettings movementSettings, ShipInput playerInput, Transform target, ShipCollisions shipCollisions)
+            MovementSettings moveSettings, FloatVariable shipSpeed, ShipInput playerInput, Transform target, ShipCollisions shipCollisions)
         {
             this.shipInput = playerInput;
             this.shipCollisions = shipCollisions;
             this.targetTransform = target;
-            this.movementSettings = movementSettings;
+            this.movementSettings = moveSettings;
+            this.currentSpeed = shipSpeed;
 
             shipCollisions.OnCollisionOccured += ChangeSpeed;
         }
@@ -32,7 +33,7 @@ namespace GenericSpaceSim.Ship
 
         public void HandleMovement()
         {
-            targetPos = targetTransform.position + targetTransform.forward * CurrentSpeed * Time.deltaTime;
+            targetPos = targetTransform.position + targetTransform.forward * currentSpeed * Time.deltaTime;
             smoothPos = Vector3.Lerp(a: targetTransform.position, b: targetPos, t: 0.99f);
 
             // Moving ship by applying changes directly to its transform every frame. 
@@ -40,24 +41,22 @@ namespace GenericSpaceSim.Ship
 
             // Smoothly changing the apply value over time on key presses.
             if (shipInput.WIsPressed)
-                CurrentSpeed += movementSettings.DeltaMovementSpeed * Time.deltaTime;
+                currentSpeed.Value += movementSettings.DeltaMovementSpeed * Time.deltaTime;
             else if (shipInput.SIsPressed)
-                CurrentSpeed -= movementSettings.DeltaMovementSpeed * movementSettings.BrakeForce * Time.deltaTime;
+                currentSpeed.Value -= movementSettings.DeltaMovementSpeed * movementSettings.BrakeForce * Time.deltaTime;
 
             // Mimic inertia force by passive speed decrease.
-            else if (CurrentSpeed > 0.0001f)
-                CurrentSpeed -= movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
-            else if (CurrentSpeed < 0f)
-                CurrentSpeed += movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
+            else if (currentSpeed > 0.0001f)
+                currentSpeed.Value -= movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
+            else if (currentSpeed < 0f)
+                currentSpeed.Value += movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
 
             // Setting speed limits.
-            CurrentSpeed = Mathf.Clamp(CurrentSpeed, -movementSettings.MaxSpeed / 6.0f, movementSettings.MaxSpeed);
+            currentSpeed.Value = Mathf.Clamp(currentSpeed, -movementSettings.MaxSpeed / 6.0f, movementSettings.MaxSpeed);
         }
 
-        public void ExposeSpeedInfo(ref float currentSpeed) => currentSpeed = this.CurrentSpeed;
-
         // Since we're using custom movement type, we gotta let external forces modify our speed somehow.
-        private void ChangeSpeed(float delta) => CurrentSpeed
-            = Mathf.Lerp(CurrentSpeed, CurrentSpeed / delta, 0.5f);
+        private void ChangeSpeed(float delta) => currentSpeed.Value
+            = Mathf.Lerp(currentSpeed, currentSpeed / delta, 0.6f);
     }
 }

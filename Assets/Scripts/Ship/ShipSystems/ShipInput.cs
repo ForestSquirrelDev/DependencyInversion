@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace GenericSpaceSim.Ship
 {
-    public class ShipInput : IPlayerInput
+    public class ShipInput
     {
         private Vector3 mousePos;
 

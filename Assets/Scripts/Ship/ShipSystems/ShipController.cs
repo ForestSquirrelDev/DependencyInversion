@@ -1,4 +1,5 @@
 using UnityEngine;
+using GenericSpaceSim.Variables;
 
 namespace GenericSpaceSim.Ship
 {
@@ -11,16 +12,12 @@ namespace GenericSpaceSim.Ship
         [SerializeField] private RotationSettings rotationSettings;
 
         [SerializeField] private Transform targetShip;
-        [SerializeField] private FloatReference floatRef;
+        [SerializeField] private FloatVariable shipSpeed;
 
         private ShipMotor shipMotor;
         private ShipRotator shipRotator;
         private ShipInput shipInput;
         private ShipCollisions shipCollisions;
-
-        private float currentSpeed;
-
-        public float CurrentSpeed => currentSpeed;
 
         private void Awake()
         {
@@ -30,7 +27,7 @@ namespace GenericSpaceSim.Ship
             shipCollisions = gameObject.AddComponent(typeof(ShipCollisions)) as ShipCollisions;
 
             shipInput = new ShipInput();
-            shipMotor = new ShipMotor(movementSettings, shipInput, targetShip, shipCollisions);
+            shipMotor = new ShipMotor(movementSettings, shipSpeed, shipInput, targetShip, shipCollisions);
             shipRotator = new ShipRotator(rotationSettings, shipInput, targetShip);
         }
 
@@ -40,12 +37,14 @@ namespace GenericSpaceSim.Ship
             shipInput.HandleControllerInput();
 
             shipMotor.HandleMovement();
-            shipMotor.ExposeSpeedInfo(ref currentSpeed);
 
             shipRotator.HandleRotation();
             shipRotator.HandleTilting();
+        }
 
-            floatRef.ConstantValue = 10f;
+        private void OnDisable()
+        {
+            shipSpeed.Value = 0;
         }
     }
 }

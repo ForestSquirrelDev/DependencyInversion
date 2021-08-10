@@ -1,0 +1,16 @@
+{
+    "name": "GenericSpaceSim.UI",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9e0e8b5471a20884cbd85b2ab88760aa"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

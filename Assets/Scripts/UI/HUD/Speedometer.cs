@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using GenericSpaceSim.Ship;
+using GenericSpaceSim.Variables;
 
 namespace GenericSpaceSim.UI
 {
@@ -10,16 +10,10 @@ namespace GenericSpaceSim.UI
     public class Speedometer : MonoBehaviour
     {
         [SerializeField] private Text speedText;
-        [SerializeField] private ShipController ship;
         [SerializeField] private FloatReference floatRef;
 
         private void Awake()
         {
-            if (ship == null)
-            {
-                Debug.LogWarning($"Field '{nameof(ship)}' is not set in the inspector. FindObjectOfType will be used instead.");
-                ship = FindObjectOfType<ShipController>();
-            }
             if (speedText == null)
             {
                 Debug.LogWarning($"Field '{nameof(speedText)}' is not set in the inspector. Using GetComponent<T>() instead.");
@@ -29,7 +23,7 @@ namespace GenericSpaceSim.UI
 
         void Update()
         {
-            speedText.text = "Speed: " + ship.CurrentSpeed.ToString(format: "0");
+            speedText.text = "Speed: " + floatRef.Value.ToString(format: "0");
         }
     }
 }
