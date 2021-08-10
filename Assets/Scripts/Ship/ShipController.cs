@@ -11,16 +11,16 @@ namespace GenericSpaceSim.Ship
         [SerializeField] private RotationSettings rotationSettings;
 
         [SerializeField] private Transform targetShip;
+        [SerializeField] private FloatReference floatRef;
 
-        private IShipMotor shipMotor;
+        private ShipMotor shipMotor;
+        private ShipRotator shipRotator;
         private ShipInput shipInput;
         private ShipCollisions shipCollisions;
 
         private float currentSpeed;
-        private float currentRollSpeed;
 
         public float CurrentSpeed => currentSpeed;
-        public float CurrentRollSpeed => currentRollSpeed;
 
         private void Awake()
         {
@@ -30,7 +30,8 @@ namespace GenericSpaceSim.Ship
             shipCollisions = gameObject.AddComponent(typeof(ShipCollisions)) as ShipCollisions;
 
             shipInput = new ShipInput();
-            shipMotor = new ShipMotor(movementSettings, rotationSettings, shipInput, targetShip, shipCollisions);
+            shipMotor = new ShipMotor(movementSettings, shipInput, targetShip, shipCollisions);
+            shipRotator = new ShipRotator(rotationSettings, shipInput, targetShip);
         }
 
         private void Update()
@@ -39,9 +40,12 @@ namespace GenericSpaceSim.Ship
             shipInput.HandleControllerInput();
 
             shipMotor.HandleMovement();
-            shipMotor.HandleRotation();
-            shipMotor.HandleTilting();
-            shipMotor.ExposeSpeedInfo(ref currentSpeed, ref currentRollSpeed);
+            shipMotor.ExposeSpeedInfo(ref currentSpeed);
+
+            shipRotator.HandleRotation();
+            shipRotator.HandleTilting();
+
+            floatRef.ConstantValue = 10f;
         }
     }
 }

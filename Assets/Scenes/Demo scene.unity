@@ -940,6 +940,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedText: {fileID: 15016287}
   ship: {fileID: 492107086}
+  floatRef:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 2a59eaa677557334793f94ec19ab8b4b, type: 2}
 --- !u!4 &4074536520633598 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2160358972548390552, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
@@ -956,6 +960,14 @@ PrefabInstance:
       propertyPath: movementSettings
       value: 
       objectReference: {fileID: 11400000, guid: 3dd6162ad2bd54341baddc9ce8e23409, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: floatRef.Variable
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a59eaa677557334793f94ec19ab8b4b, type: 2}
+    - target: {fileID: 492107086, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
+      propertyPath: floatRef.UseConstant
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2157450666871092056, guid: 9ac74f90fe9b8e34abb96ecbe7e431e8, type: 3}
       propertyPath: m_Name
       value: '#Player ship#'

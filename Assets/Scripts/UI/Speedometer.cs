@@ -11,6 +11,7 @@ namespace GenericSpaceSim.UI
     {
         [SerializeField] private Text speedText;
         [SerializeField] private ShipController ship;
+        [SerializeField] private FloatReference floatRef;
 
         private void Awake()
         {

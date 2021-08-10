@@ -5,28 +5,25 @@ namespace GenericSpaceSim.Ship
     /// <summary>
     /// Responsible for movement and rotation of player ship.
     /// </summary>
-    public class ShipMotor : IShipMotor
+    public class ShipMotor
     {
         private readonly ShipInput shipInput;
         private readonly ShipCollisions shipCollisions;
         private readonly Transform targetTransform;
         private readonly MovementSettings movementSettings;
-        private readonly RotationSettings rotationSettings;
 
         private Vector3 targetPos;
         private Vector3 smoothPos;
 
         public float CurrentSpeed { get; private set; } = 0f;
-        public float CurrentRollSpeed { get; private set; } = 0f;
 
         public ShipMotor(
-            MovementSettings movementSettings, RotationSettings rotationSettings, ShipInput playerInput, Transform target, ShipCollisions shipCollisions)
+            MovementSettings movementSettings, ShipInput playerInput, Transform target, ShipCollisions shipCollisions)
         {
             this.shipInput = playerInput;
             this.shipCollisions = shipCollisions;
             this.targetTransform = target;
             this.movementSettings = movementSettings;
-            this.rotationSettings = rotationSettings;
 
             shipCollisions.OnCollisionOccured += ChangeSpeed;
         }
@@ -57,45 +54,7 @@ namespace GenericSpaceSim.Ship
             CurrentSpeed = Mathf.Clamp(CurrentSpeed, -movementSettings.MaxSpeed / 6.0f, movementSettings.MaxSpeed);
         }
 
-        public void HandleRotation()
-        {
-            // Rotate ship's Transform by X and Y axes according to mouse position input.
-            targetTransform.Rotate(xAngle: shipInput.Pitch * rotationSettings.RotationSpeed * Time.deltaTime,
-                                   yAngle: shipInput.Yaw * rotationSettings.RotationSpeed * Time.deltaTime,
-                                   zAngle: 0f);
-        }
-
-        public void HandleTilting()
-        {
-            if (CurrentRollSpeed > 0f || CurrentRollSpeed < 0f)
-                targetTransform.Rotate(0f, 0f, CurrentRollSpeed * Time.deltaTime);
-
-            if (shipInput.QIsPressed)
-                CurrentRollSpeed += Time.deltaTime * rotationSettings.DeltaRollSpeed;
-            else if (shipInput.EIsPressed)
-                CurrentRollSpeed -= Time.deltaTime * rotationSettings.DeltaRollSpeed;
-
-            else if (CurrentRollSpeed > 0f)
-                CurrentRollSpeed = Mathf.Lerp(a: CurrentRollSpeed,
-                                           b: CurrentRollSpeed - Time.deltaTime 
-                                           * rotationSettings.DeltaRollSpeed 
-                                           * rotationSettings.Inertia,
-                                           t: rotationSettings.RollLerpTime);
-            else if (CurrentRollSpeed < 0f)
-                CurrentRollSpeed = Mathf.Lerp(a: CurrentRollSpeed,
-                                           b: CurrentRollSpeed + Time.deltaTime 
-                                           * rotationSettings.DeltaRollSpeed 
-                                           * rotationSettings.Inertia,
-                                           t: rotationSettings.RollLerpTime);
-
-            CurrentRollSpeed = Mathf.Clamp(CurrentRollSpeed, -rotationSettings.MaxRollSpeed, rotationSettings.MaxRollSpeed);
-        }
-
-        public void ExposeSpeedInfo(ref float currentSpeed, ref float currentRollSpeed)
-        {
-            currentSpeed = this.CurrentSpeed;
-            currentRollSpeed = this.CurrentRollSpeed;
-        }
+        public void ExposeSpeedInfo(ref float currentSpeed) => currentSpeed = this.CurrentSpeed;
 
         // Since we're using custom movement type, we gotta let external forces modify our speed somehow.
         private void ChangeSpeed(float delta) => CurrentSpeed
