@@ -10,7 +10,7 @@ This part of code now follows Dependency inversion principle. Instead of all cor
 ### Camera management
 Here i've used some sort of **Strategy** design pattern (or at least i hope so).
 
-We have a base AbstractCamera class that defines: every class derived from it will be a scriptable object and will contain a method to follow player ship. AbstractCamera does not have any fields or properties because every type of camera needs (or does not need) a set of it's own settings. All camera types are derived from this abstract class.
+We have a base AbstractCamera class that defines: every class derived from it will be a scriptable object and will contain a method to follow player ship. AbstractCamera does not have any fields or properties because every type of camera needs (or does not need) a set of its own settings. All camera types are derived from this abstract class.
 
 Then there is a MonoBehaviour called CameraController that can contain those cameras and iterate between them in game based on input.
 
