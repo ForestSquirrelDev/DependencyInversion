@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedText: {fileID: 15016287}
-  floatRef:
+  floatReference:
     Variable: {fileID: 11400000, guid: 4b4bc64c0b521124282630506c9b9170, type: 2}
 --- !u!4 &4074536520633598 stripped
 Transform:
