@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace GenericSpaceSim.Ship
 {
+    /// <summary>
+    /// Rotation and tilting of the ship.
+    /// </summary>
     public class ShipRotator
     {
         private readonly ShipInput shipInput;

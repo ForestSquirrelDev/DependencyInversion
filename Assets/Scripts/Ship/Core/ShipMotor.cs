@@ -4,7 +4,7 @@ using GenericSpaceSim.Variables;
 namespace GenericSpaceSim.Ship
 {
     /// <summary>
-    /// Responsible for movement and rotation of player ship.
+    /// Responsible for movement of player ship.
     /// </summary>
     public class ShipMotor
     {
