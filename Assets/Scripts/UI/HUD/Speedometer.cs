@@ -10,7 +10,7 @@ namespace GenericSpaceSim.UI
     public class Speedometer : MonoBehaviour
     {
         [SerializeField] private Text speedText;
-        [SerializeField] private FloatReference floatRef;
+        [SerializeField] private FloatReference floatReference;
 
         private void Awake()
         {
@@ -23,7 +23,7 @@ namespace GenericSpaceSim.UI
 
         void Update()
         {
-            speedText.text = "Speed: " + floatRef.Value.ToString(format: "0");
+            speedText.text = "Speed: " + floatReference.Value.ToString(format: "0");
         }
     }
 }
