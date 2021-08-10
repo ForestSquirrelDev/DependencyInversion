@@ -7,6 +7,7 @@ namespace GenericSpaceSim.Variables
     public class FloatReference
     {
         [SerializeField] private FloatVariable Variable;
+
         public float Value => Variable.Value;
     }
 }
