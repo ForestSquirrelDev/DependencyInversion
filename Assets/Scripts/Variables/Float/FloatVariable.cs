@@ -7,6 +7,7 @@ namespace GenericSpaceSim.Variables
     {
         [TextArea(5, 5)]
         [SerializeField] private string DeveloperDescription = "";
+
         public float Value { get; set; }
 
         public static implicit operator float(FloatVariable f)
