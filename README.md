@@ -19,6 +19,7 @@ The idea is simple: create a ScriptableObject with a single variable, and a Seri
 By such manipulations we: 
 - keep our code modular
 - do not break encapsulation
+- successfully solve problem that could be traditionally done by singleton <s>anti</s> pattern
 - avoid using rigid connections between scripts
 
 ![SO](https://user-images.githubusercontent.com/82777171/128982404-55168def-79ea-40ae-ba81-b3e0e3a897f2.png)
