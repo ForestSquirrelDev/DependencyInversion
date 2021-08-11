@@ -44,16 +44,16 @@ namespace GenericSpaceSim.Ship
 
             else if (CurrentRollSpeed > 0f)
                 CurrentRollSpeed = Mathf.Lerp(a: CurrentRollSpeed,
-                                            b: CurrentRollSpeed - Time.deltaTime
-                                            * rotationSettings.DeltaRollSpeed
-                                            * rotationSettings.Inertia,
-                                            t: rotationSettings.RollLerpTime);
+                                              b: CurrentRollSpeed - Time.deltaTime
+                                              * rotationSettings.DeltaRollSpeed
+                                              * rotationSettings.Inertia,
+                                              t: rotationSettings.RollLerpTime);
             else if (CurrentRollSpeed < 0f)
                 CurrentRollSpeed = Mathf.Lerp(a: CurrentRollSpeed,
-                                           b: CurrentRollSpeed + Time.deltaTime
-                                           * rotationSettings.DeltaRollSpeed
-                                           * rotationSettings.Inertia,
-                                           t: rotationSettings.RollLerpTime);
+                                              b: CurrentRollSpeed + Time.deltaTime
+                                              * rotationSettings.DeltaRollSpeed
+                                              * rotationSettings.Inertia,
+                                              t: rotationSettings.RollLerpTime);
 
             CurrentRollSpeed = Mathf.Clamp(value: CurrentRollSpeed,
                                            min: -rotationSettings.MaxRollSpeed,
