@@ -7,7 +7,7 @@ This project uses almost the same logic as [this one](https://github.com/ForestS
 https://user-images.githubusercontent.com/82777171/127158500-a50c5fb4-cec7-43f0-b617-37cb4d0d0a69.mp4
 
 ### Ship
-This part of code now follows Dependency inversion principle. Instead of all core ship systems (i.e. movement system, rotation, player input etc) being MonoBehaviours and having to find their dependencies on their own, we now only have one MonoBehaviour that represents player ship and acts as a controller for it. Other core systems are non-MonoBehaviour C# classes and their dependencies are getting filled in constructors.
+This part of code now follows Dependency inversion principle. Instead of all core ship systems (i.e. movement system, rotation, input) being MonoBehaviours and having to find their dependencies on their own, we now only have one MonoBehaviour that represents player ship and acts as a controller for it. Other core systems are non-MonoBehaviour C# classes and their dependencies are getting filled in constructors.
 
 ### ScriptableObject variables
 This part is based entirely on this amazing [talk](https://youtu.be/raQ3iHhE_Kk) from Unite Austin 2017.
