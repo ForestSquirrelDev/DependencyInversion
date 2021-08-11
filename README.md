@@ -7,7 +7,7 @@ This project uses almost the same logic as [this one](https://github.com/ForestS
 https://user-images.githubusercontent.com/82777171/127158500-a50c5fb4-cec7-43f0-b617-37cb4d0d0a69.mp4
 
 ### Ship
-This part of code now follows Dependency inversion principle. Instead of all core ship systems being MonoBehaviours and having to find their dependencies on their own, we now only have one MonoBehaviour that represents player ship and acts as a controller for it. Other core systems are non-MonoBehaviour C# classes and their dependencies are getting filled in constructors.
+This part of code now follows Dependency inversion principle. Instead of all core ship systems (i.e. movement system, rotation, input) being MonoBehaviours and having to find their dependencies on their own, we now only have one MonoBehaviour that represents player ship and acts as a controller for it. Other core systems are non-MonoBehaviour C# classes and their dependencies are getting filled in constructors.
 
 ### ScriptableObject variables
 This part is based entirely on this amazing [talk](https://youtu.be/raQ3iHhE_Kk) from Unite Austin 2017.
@@ -19,11 +19,12 @@ The idea is simple: create a ScriptableObject with a single variable, and a Seri
 By such manipulations we: 
 - keep our code modular
 - do not break encapsulation
+- successfully solve problem that could be traditionally done by singleton <s>anti</s> pattern
 - avoid using rigid connections between scripts
 
-![SO](https://user-images.githubusercontent.com/82777171/128940515-376306b0-459a-4875-a2c4-094045c57190.png)
+![SO](https://user-images.githubusercontent.com/82777171/128982404-55168def-79ea-40ae-ba81-b3e0e3a897f2.png)
 
-To prove the last statement, in this project i've separated code parts into different assemblies: none of them references one-another except Variables assembly - Ship uses our SO variable as a speed, and UI needs a reference of its value.
+To prove the last statement, in this project i've separated code parts into 5 different assemblies: none of them references one-another except Variables assembly - Ship uses our SO variable as a speed, and UI needs a reference of its value.
 
 ### Camera management
 Here i've used some sort of **Strategy** design pattern (or at least i hope so).
