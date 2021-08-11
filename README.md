@@ -21,7 +21,7 @@ By such manipulations we:
 - do not break encapsulation
 - avoid using rigid connections between scripts
 
-![SO](https://user-images.githubusercontent.com/82777171/128940515-376306b0-459a-4875-a2c4-094045c57190.png)
+![SO](https://user-images.githubusercontent.com/82777171/128982404-55168def-79ea-40ae-ba81-b3e0e3a897f2.png)
 
 To prove the last statement, in this project i've separated code parts into 5 different assemblies: none of them references one-another except Variables assembly - Ship uses our SO variable as a speed, and UI needs a reference of its value.
 
