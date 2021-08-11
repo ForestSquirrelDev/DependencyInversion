@@ -17,7 +17,10 @@ namespace GenericSpaceSim.CameraManagement
 
         private int currentCamera = 0;
 
-        private void Awake() => cameraInput = new CameraInput();
+        private void Awake()
+        {
+            cameraInput = new CameraInput();
+        }
 
         private void Update()
         {
@@ -25,7 +28,10 @@ namespace GenericSpaceSim.CameraManagement
             LookForCameraChanging();
         }
 
-        private void LateUpdate() => cameras[currentCamera].FollowPlayer(this.transform, target, rig);
+        private void LateUpdate()
+        {
+            cameras[currentCamera].FollowPlayer(this.transform, target, rig);
+        }
 
         private void LookForCameraChanging()
         {

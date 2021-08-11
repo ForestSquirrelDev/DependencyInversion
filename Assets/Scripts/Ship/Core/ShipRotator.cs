@@ -28,6 +28,10 @@ namespace GenericSpaceSim.Ship
                                    zAngle: 0f);
         }
 
+        /// <summary>
+        /// Same idea as with the movement. Always rotate by a value
+        /// that's smoothly changed by input.
+        /// </summary>
         public void HandleTilting()
         {
             if (CurrentRollSpeed > 0f || CurrentRollSpeed < 0f)
@@ -51,7 +55,9 @@ namespace GenericSpaceSim.Ship
                                            * rotationSettings.Inertia,
                                            t: rotationSettings.RollLerpTime);
 
-            CurrentRollSpeed = Mathf.Clamp(CurrentRollSpeed, -rotationSettings.MaxRollSpeed, rotationSettings.MaxRollSpeed);
+            CurrentRollSpeed = Mathf.Clamp(value: CurrentRollSpeed,
+                                           min: -rotationSettings.MaxRollSpeed,
+                                           max: rotationSettings.MaxRollSpeed);
         }
     }
 }

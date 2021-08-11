@@ -6,8 +6,6 @@ namespace GenericSpaceSim.CameraManagement
     {
         public bool CIsPressed { get; private set; }
 
-        public void HandleControllerInput() => Debug.LogWarning("No controller input implementation.");
-
         public void HandleKeyboardInput()
         {
             if (Input.GetKeyDown(KeyCode.C))
