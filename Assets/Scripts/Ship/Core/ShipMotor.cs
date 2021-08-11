@@ -33,26 +33,41 @@ namespace GenericSpaceSim.Ship
 
         public void HandleMovement()
         {
-            targetPos = targetTransform.position + targetTransform.forward * currentSpeed.Value * Time.deltaTime;
-            smoothPos = Vector3.Lerp(a: targetTransform.position, b: targetPos, t: 0.99f);
+            targetPos = targetTransform.position
+                        + targetTransform.forward
+                        * currentSpeed.Value
+                        * Time.deltaTime;
+
+            smoothPos = Vector3.Lerp(a: targetTransform.position,
+                                     b: targetPos,
+                                     t: 0.99f);
 
             // Moving ship by applying changes directly to its transform every frame. 
             targetTransform.position = smoothPos;
 
             // Smoothly changing the apply value over time on key presses.
             if (shipInput.WIsPressed)
-                currentSpeed.Value += movementSettings.DeltaMovementSpeed * Time.deltaTime;
+                currentSpeed.Value += movementSettings.DeltaMovementSpeed
+                                      * Time.deltaTime;
             else if (shipInput.SIsPressed)
-                currentSpeed.Value -= movementSettings.DeltaMovementSpeed * movementSettings.BrakeForce * Time.deltaTime;
+                currentSpeed.Value -= movementSettings.DeltaMovementSpeed
+                                      * movementSettings.BrakeForce
+                                      * Time.deltaTime;
 
             // Mimic inertia force by passive speed decrease.
             else if (currentSpeed.Value > 0.0001f)
-                currentSpeed.Value -= movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
+                currentSpeed.Value -= movementSettings.DeltaMovementSpeed
+                                      * movementSettings.Inertia
+                                      * Time.deltaTime;
             else if (currentSpeed.Value < 0f)
-                currentSpeed.Value += movementSettings.DeltaMovementSpeed * movementSettings.Inertia * Time.deltaTime;
+                currentSpeed.Value += movementSettings.DeltaMovementSpeed
+                                      * movementSettings.Inertia
+                                      * Time.deltaTime;
 
             // Setting speed limits.
-            currentSpeed.Value = Mathf.Clamp(currentSpeed.Value, -movementSettings.MaxSpeed / 6.0f, movementSettings.MaxSpeed);
+            currentSpeed.Value = Mathf.Clamp(value: currentSpeed.Value,
+                                             min: -movementSettings.MaxSpeed / 6.0f,
+                                             max: movementSettings.MaxSpeed);
         }
 
         // Since we're using custom movement type, we gotta let external forces modify our speed somehow.
